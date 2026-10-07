@@ -22,14 +22,14 @@ export class CategoryListPage implements OnInit {
   protected readonly categoryService = inject(CategoryService);
   protected readonly dialog = inject(MatDialog);
 
-  constructor(/* empty */) {
-    /* empty */
-  }
-
-  ngOnInit(): void {
+  loadData(): void {
     this.categoryService
       .getCategories()
       .subscribe((categories) => (this.dataSource.data = categories));
+  }
+
+  ngOnInit(): void {
+    this.loadData();
   }
 
   createCategory() {
@@ -43,9 +43,14 @@ export class CategoryListPage implements OnInit {
     });
   }
 
-  loadData(): void {
-    this.categoryService
-      .getCategories()
-      .subscribe((categories) => (this.dataSource.data = categories));
+  editCategory(category: Category) {
+    const dialogRef = this.dialog.open(CategoryEditComponent, {
+      data: { category },
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) return;
+      this.loadData();
+    });
   }
 }
