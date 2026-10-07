@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { CategoryEditComponent } from '../category-edit/category-edit.component';
 import { Category } from '../model/category';
 import { CategoryService } from './category.service';
 
@@ -17,10 +19,31 @@ export class CategoryListPage implements OnInit {
   dataSource = new MatTableDataSource<Category>();
   displayedColumns: string[] = ['id', 'name', 'action'];
 
-  // eslint-disable-next-line @angular-eslint/prefer-inject
-  constructor(private categoryService: CategoryService,) {}
+  protected readonly categoryService = inject(CategoryService);
+  protected readonly dialog = inject(MatDialog);
+
+  constructor(/* empty */) {
+    /* empty */
+  }
 
   ngOnInit(): void {
+    this.categoryService
+      .getCategories()
+      .subscribe((categories) => (this.dataSource.data = categories));
+  }
+
+  createCategory() {
+    const dialogRef = this.dialog.open(CategoryEditComponent, {
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) return;
+      this.loadData();
+    });
+  }
+
+  loadData(): void {
     this.categoryService
       .getCategories()
       .subscribe((categories) => (this.dataSource.data = categories));
