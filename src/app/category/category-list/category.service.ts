@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Category } from '../model/category';
 
 @Injectable({
@@ -16,10 +16,12 @@ export class CategoryService {
   }
 
   saveCategory(category: Category): Observable<Category> {
-    return of(null);
+    const { id } = category;
+    const url = id ? `${this.baseUrl}/${id}` : this.baseUrl;
+    return this.http.put<Category>(url, category);
   }
 
   deleteCategory(idCategory: number): Observable<any> {
-    return of(null);
+    return this.http.delete(`${this.baseUrl}/${idCategory}`);
   }
 }
