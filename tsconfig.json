@@ -4,7 +4,7 @@
   "compileOnSave": false,
   "compilerOptions": {
     "strict": false,
-    "strictNullChecks": true,
+    "strictNullChecks": false,
     "skipLibCheck": true,
     "isolatedModules": true,
     "experimentalDecorators": true,

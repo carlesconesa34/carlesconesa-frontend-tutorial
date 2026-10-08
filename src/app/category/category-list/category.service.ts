@@ -11,7 +11,7 @@ export class CategoryService {
     /* empty */
   }
 
-  saveCategory(category: Category): Observable<Category> {
+  saveCategory(category: Category): Observable<Category> | null {
     return of(null);
   }
 
