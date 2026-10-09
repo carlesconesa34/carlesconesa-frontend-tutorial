@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Pageable } from '../../core/model/page/Pageable';
-import { PaginatedData } from '../../core/model/page/PaginatedData';
-import { Author } from '../model/Author';
+import { Pageable } from '../../core/model/page/pageable';
+import { PaginatedData } from '../../core/model/page/paginated-data';
+import { Author } from '../model/author';
 
 @Injectable({
   providedIn: 'root',

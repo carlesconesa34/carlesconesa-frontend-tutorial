@@ -1,4 +1,4 @@
-import { Pageable } from './Pageable';
+import { Pageable } from './pageable';
 
 export interface PaginatedData<TData> {
   content: TData[];

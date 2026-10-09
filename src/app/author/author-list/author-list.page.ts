@@ -6,9 +6,9 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dialog-confirmation.component';
-import { Pageable } from '../../core/model/page/Pageable';
+import { Pageable } from '../../core/model/page/pageable';
 import { AuthorEditComponent } from '../author-edit/author-edit.component';
-import { Author } from '../model/Author';
+import { Author } from '../model/author';
 import { AuthorService } from './author.service';
 
 @Component({

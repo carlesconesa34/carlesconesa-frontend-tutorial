@@ -6,7 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { validateFields } from '../../../app/core/helpers/validation.helper';
 import { AuthorService } from '../author-list/author.service';
-import { Author } from '../model/Author';
+import { Author } from '../model/author';
 
 @Component({
   selector: 'app-author-edit',

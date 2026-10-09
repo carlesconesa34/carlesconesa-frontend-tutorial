@@ -1,4 +1,4 @@
-import { Author } from './Author';
+import { Author } from './author';
 
 export const AUTHOR_DATA_LIST: Author[] = [
   { id: 1, name: 'Klaus Teuber', nationality: 'Alemania' },
