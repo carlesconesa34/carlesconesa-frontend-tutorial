@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { ClientEditComponent } from '../client-edit/client-edit.component';
+import { clientEditComponent } from '../client-edit/client-edit.component';
 import { ClientService } from '../client.service';
 import { Client } from '../model/client';
 
@@ -26,7 +26,7 @@ export class ClientListPage {
   protected readonly categoryService = inject(ClientService);
   protected readonly dialog = inject(MatDialog);
   createClient() {
-    const dialogRef = this.dialog.open(ClientEditComponent, {
+    const dialogRef = this.dialog.open(clientEditComponent, {
       data: {},
     });
 
