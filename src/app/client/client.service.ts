@@ -14,4 +14,12 @@ export class ClientService {
   getClients(): Observable<Client[]> {
     return of(CLIENT_DATA);
   }
+
+  saveClient(client: Client): Observable<Client> {
+    return of(null);
+  }
+
+  deleteClient(idClient: number): Observable<any> {
+    return of(null);
+  }
 }
