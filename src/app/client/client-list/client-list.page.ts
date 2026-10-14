@@ -1,8 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
+import { MatDialog } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { ClientEditComponent } from '../client-edit/client-edit.component';
+import { ClientService } from '../client.service';
 import { Client } from '../model/client';
 
 @Component({
@@ -18,5 +21,21 @@ export class ClientListPage {
 
   constructor() {
     /* empty */
+  }
+
+  protected readonly categoryService = inject(ClientService);
+  protected readonly dialog = inject(MatDialog);
+  createClient() {
+    const dialogRef = this.dialog.open(ClientEditComponent, {
+      data: {},
+    });
+
+    dialogRef.afterClosed().subscribe((result) => {
+      if (!result) return;
+      this.loadData();
+    });
+  }
+  loadData() {
+    throw new Error('Method not implemented.');
   }
 }
