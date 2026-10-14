@@ -9,7 +9,7 @@ import { Client } from './model/client';
 })
 export class ClientService {
   protected readonly http = inject(HttpClient);
-  private baseUrl = 'http://localhost:8080/category';
+  private baseUrl = 'http://localhost:8080/client';
 
   getClients(): Observable<Client[]> {
     return this.http.get<Client[]>(this.baseUrl);
