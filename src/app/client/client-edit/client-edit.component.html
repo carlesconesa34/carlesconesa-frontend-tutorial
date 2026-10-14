@@ -1,5 +1,9 @@
 <div class="container">
-  <h1>Crear cliente</h1>
+  @if (id()) {
+    <h1>Modificar cliente</h1>
+  } @else {
+    <h1>Crear cliente</h1>
+  }
 
   <form>
     <mat-form-field>
