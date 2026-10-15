@@ -1,37 +1,70 @@
+/* eslint-disable @angular-eslint/prefer-inject */
+/* eslint-disable @typescript-eslint/no-unused-vars */
+/* eslint-disable @typescript-eslint/no-inferrable-types */
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, signal } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatDialog } from '@angular/material/dialog';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
-import { PageEvent } from '@angular/material/paginator';
+import { MatInputModule } from '@angular/material/input';
+import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
+import { MatSelectModule } from '@angular/material/select';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
+import { ClientService } from '../../client/client.service';
+import { Client } from '../../client/model/client';
 import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dialog-confirmation.component';
 import { Pageable } from '../../core/model/page/pageable';
+import { GameService } from '../../game/game-list/game.service';
+import { Game } from '../../game/model/game';
 import { LoanEditComponent } from '../loan-edit/loan-edit.component';
-import { LoanService } from '../loan.service';
 import { Loan } from '../model/loan';
+import { LoanService } from './loan.service';
 
 @Component({
   selector: 'app-loan-list',
   standalone: true,
-  imports: [MatButtonModule, MatIconModule, MatTableModule, CommonModule],
+  imports: [
+    CommonModule,
+    FormsModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatDatepickerModule,
+    MatInputModule,
+    MatNativeDateModule,
+  ],
   templateUrl: './loan-list.page.html',
   styleUrl: './loan-list.page.scss',
 })
-export class LoanListComponent implements OnInit {
+export class LoanListPage implements OnInit {
   pageNumber: number = 0;
   pageSize: number = 5;
   totalElements: number = 0;
 
+  filterLoan: Loan = {};
+  protected readonly games = signal<Game[]>([]);
+  protected readonly clients = signal<Client[]>([]);
+
   dataSource = new MatTableDataSource<Loan>();
-  displayedColumns: string[] = ['id', 'name', 'nationality', 'action'];
+  displayedColumns: string[] = ['id', 'gameName', 'clientName', 'startDate', 'endDate', 'action'];
 
   constructor(
     private loanService: LoanService,
+    private gameService: GameService,
+    private clientService: ClientService,
     public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
+    this.loadGames();
+    this.loadClients();
     this.loadPage();
   }
 
@@ -47,16 +80,39 @@ export class LoanListComponent implements OnInit {
       ],
     };
 
-    if (event != null) {
-      pageable.pageSize = event.pageSize;
+    if (event) {
       pageable.pageNumber = event.pageIndex;
+      pageable.pageSize = event.pageSize;
     }
 
-    this.loanService.getLoan(pageable).subscribe((data) => {
+    this.loanService.getLoans(this.filterLoan, pageable).subscribe((data) => {
       this.dataSource.data = data.content;
       this.pageNumber = data.pageable.pageNumber;
       this.pageSize = data.pageable.pageSize;
       this.totalElements = data.totalElements;
+    });
+  }
+
+  onSearch() {
+    this.pageNumber = 0;
+    this.loadPage();
+  }
+
+  onCleanFilter() {
+    this.filterLoan = {};
+    this.pageNumber = 0;
+    this.loadPage();
+  }
+
+  loadGames(): void {
+    this.gameService.getGames().subscribe((data) => {
+      this.games.set(data);
+    });
+  }
+
+  loadClients(): void {
+    this.clientService.getClients().subscribe((data) => {
+      this.clients.set(data);
     });
   }
 
@@ -70,9 +126,9 @@ export class LoanListComponent implements OnInit {
     });
   }
 
-  editLoan(Loan: Loan) {
+  editLoan(loan: Loan) {
     const dialogRef = this.dialog.open(LoanEditComponent, {
-      data: { Loan: Loan },
+      data: { loan: loan },
     });
 
     dialogRef.afterClosed().subscribe((result) => {
@@ -80,10 +136,10 @@ export class LoanListComponent implements OnInit {
     });
   }
 
-  deleteLoan(Loan: Loan) {
+  deleteLoan(loan: Loan) {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
       data: {
-        title: 'Eliminar prestámo',
+        title: 'Eliminar préstamo',
         description:
           'Atención si borra el préstamo se perderán sus datos.<br> ¿Desea eliminar el préstamo?',
       },

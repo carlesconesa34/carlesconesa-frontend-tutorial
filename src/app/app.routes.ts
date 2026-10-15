@@ -22,7 +22,7 @@ export const routes: Routes = [
       import('./client/client-list/client-list.page').then((m) => m.ClientListPage),
   },
   {
-    path: 'authors',
+    path: 'loans',
     loadComponent: () => import('./loan/loan-list/loan-list.page').then((m) => m.LoanListPage),
   },
 ];
