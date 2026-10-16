@@ -53,10 +53,10 @@ export class LoanEditComponent implements OnInit {
 
   loadFormData(initialData: Loan | null) {
     this.id.set(initialData?.id ?? null);
-    this.clientId.set(initialData?.clientId ?? null);
-    this.gameId.set(initialData?.gameId ?? null);
+    this.clientId.set(initialData?.client?.id ?? initialData?.clientId ?? null);
+    this.gameId.set(initialData?.game?.id ?? initialData?.gameId ?? null);
     this.clientName.set(initialData?.client?.name ?? null);
-    this.gameName.set(initialData?.client?.name ?? null);
+    this.gameName.set(initialData?.game?.title ?? null);
     this.startDate.set(initialData?.startDate ?? null);
     this.endDate.set(initialData?.endDate ?? null);
   }
