@@ -14,6 +14,7 @@ import { GameService } from '../../game/game-list/game.service';
 import { Game } from '../../game/model/game';
 import { LoanService } from '../loan-list/loan.service';
 import { Loan } from '../model/loan';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-loan-edit',
@@ -92,19 +93,13 @@ export class LoanEditComponent implements OnInit {
       id,
       game: { id: gameId },
       client: { id: clientId },
-      startDate: this.toIsoDate(startDate!),
-      endDate: this.toIsoDate(endDate!),
+      startDate: formatDate(startDate!, 'yyyy-MM-dd', 'en-US'),
+      endDate: formatDate(endDate!, 'yyyy-MM-dd', 'en-US')
     } as unknown as Loan;
     this.loanService.saveLoan(loan).subscribe({
       next: () => this.dialogRef.close(true),
       error: (err) => console.error('ERROR', err),
     });
-  }
-
-  private toIsoDate(d: Date): string {
-    const m = String(d.getMonth() + 1).padStart(2, '0');
-    const day = String(d.getDate()).padStart(2, '0');
-    return `${d.getFullYear()}-${m}-${day}`;
   }
 
   onClose() {
