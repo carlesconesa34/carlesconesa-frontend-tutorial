@@ -90,14 +90,21 @@ export class LoanEditComponent implements OnInit {
 
     const loan = {
       id,
-      clientId,
-      gameId,
-      startDate,
-      endDate,
-    } as Loan;
-    this.loanService.saveLoan(loan).subscribe(() => {
-      this.dialogRef.close(true);
+      game: { id: gameId },
+      client: { id: clientId },
+      startDate: this.toIsoDate(startDate!),
+      endDate: this.toIsoDate(endDate!),
+    } as unknown as Loan;
+    this.loanService.saveLoan(loan).subscribe({
+      next: () => this.dialogRef.close(true),
+      error: (err) => console.error('ERROR', err),
     });
+  }
+
+  private toIsoDate(d: Date): string {
+    const m = String(d.getMonth() + 1).padStart(2, '0');
+    const day = String(d.getDate()).padStart(2, '0');
+    return `${d.getFullYear()}-${m}-${day}`;
   }
 
   onClose() {
