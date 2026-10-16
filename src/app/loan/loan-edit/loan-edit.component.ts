@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
@@ -6,14 +7,13 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { ClientService } from '../../client/client.service';
+import { ClientService } from '../../client/client-list/client.service';
 import { Client } from '../../client/model/client';
 import { validateFields } from '../../core/helpers/validation.helper';
 import { GameService } from '../../game/game-list/game.service';
 import { Game } from '../../game/model/game';
 import { LoanService } from '../loan-list/loan.service';
 import { Loan } from '../model/loan';
-import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-loan-edit',
@@ -92,7 +92,7 @@ export class LoanEditComponent implements OnInit {
       game: { id: gameId },
       client: { id: clientId },
       startDate: formatDate(startDate!, 'yyyy-MM-dd', 'en-US'),
-      endDate: formatDate(endDate!, 'yyyy-MM-dd', 'en-US')
+      endDate: formatDate(endDate!, 'yyyy-MM-dd', 'en-US'),
     } as unknown as Loan;
     this.loanService.saveLoan(loan).subscribe({
       next: () => this.dialogRef.close(true),
