@@ -8,8 +8,8 @@ import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dialog-confirmation.component';
 import { Pageable } from '../../core/model/page/pageable';
 import { AuthorEditComponent } from '../author-edit/author-edit.component';
+import { AuthorService } from '../author.service';
 import { Author } from '../model/author';
-import { AuthorService } from './author.service';
 
 @Component({
   selector: 'app-author-list',

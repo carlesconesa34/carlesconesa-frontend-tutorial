@@ -1,9 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Pageable } from '../../core/model/page/pageable';
-import { PaginatedData } from '../../core/model/page/paginated-data';
-import { Loan } from '../model/loan';
+import { Pageable } from '../core/model/page/pageable';
+import { PaginatedData } from '../core/model/page/paginated-data';
+import { Loan } from './model/loan';
 
 @Service()
 export class LoanService {

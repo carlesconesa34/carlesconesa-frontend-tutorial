@@ -8,12 +8,12 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
-import { CategoryService } from '../../category/category-list/category.service';
+import { CategoryService } from '../../category/category.service';
 import { Category } from '../../category/model/category';
 import { GameEditComponent } from '../game-edit/game-edit.component';
+import { GameService } from '../game.service';
 import { Game } from '../model/game';
 import { GameItemComponent } from './game-item/game-item.component';
-import { GameService } from './game.service';
 
 @Component({
   selector: 'app-game-list',

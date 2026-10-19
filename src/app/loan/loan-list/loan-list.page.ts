@@ -13,15 +13,15 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { ClientService } from '../../client/client-list/client.service';
+import { ClientService } from '../../client/client.service';
 import { Client } from '../../client/model/client';
 import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dialog-confirmation.component';
 import { Pageable } from '../../core/model/page/pageable';
-import { GameService } from '../../game/game-list/game.service';
+import { GameService } from '../../game/game.service';
 import { Game } from '../../game/model/game';
 import { LoanEditComponent } from '../loan-edit/loan-edit.component';
+import { LoanService } from '../loan.service';
 import { Loan } from '../model/loan';
-import { LoanService } from './loan.service';
 
 @Component({
   selector: 'app-loan-list',

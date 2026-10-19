@@ -6,8 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dialog-confirmation.component';
 import { clientEditComponent } from '../client-edit/client-edit.component';
+import { ClientService } from '../client.service';
 import { Client } from '../model/client';
-import { ClientService } from './client.service';
 
 @Component({
   selector: 'app-client-list',

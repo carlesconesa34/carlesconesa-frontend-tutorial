@@ -4,7 +4,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ClientService } from '../client-list/client.service';
+import { ClientService } from '../client.service';
 import { Client } from '../model/client';
 
 @Component({

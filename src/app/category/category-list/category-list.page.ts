@@ -6,8 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
 import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dialog-confirmation.component';
 import { CategoryEditComponent } from '../category-edit/category-edit.component';
+import { CategoryService } from '../category.service';
 import { Category } from '../model/category';
-import { CategoryService } from './category.service';
 
 @Component({
   selector: 'app-category-list',

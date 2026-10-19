@@ -5,7 +5,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { validateFields } from '../../../app/core/helpers/validation.helper';
-import { AuthorService } from '../author-list/author.service';
+import { AuthorService } from '../author.service';
 import { Author } from '../model/author';
 
 @Component({

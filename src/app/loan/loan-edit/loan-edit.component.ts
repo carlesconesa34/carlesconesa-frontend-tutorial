@@ -7,12 +7,12 @@ import { MAT_DIALOG_DATA, MatDialogModule, MatDialogRef } from '@angular/materia
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { ClientService } from '../../client/client-list/client.service';
+import { ClientService } from '../../client/client.service';
 import { Client } from '../../client/model/client';
 import { validateFields } from '../../core/helpers/validation.helper';
-import { GameService } from '../../game/game-list/game.service';
+import { GameService } from '../../game/game.service';
 import { Game } from '../../game/model/game';
-import { LoanService } from '../loan-list/loan.service';
+import { LoanService } from '../loan.service';
 import { Loan } from '../model/loan';
 
 @Component({

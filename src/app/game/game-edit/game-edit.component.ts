@@ -5,12 +5,12 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
-import { AuthorService } from '../../author/author-list/author.service';
+import { AuthorService } from '../../author/author.service';
 import { Author } from '../../author/model/author';
-import { CategoryService } from '../../category/category-list/category.service';
+import { CategoryService } from '../../category/category.service';
 import { Category } from '../../category/model/category';
 import { validateFields } from '../../core/helpers/validation.helper';
-import { GameService } from '../game-list/game.service';
+import { GameService } from '../game.service';
 import { Game } from '../model/game';
 
 @Component({
