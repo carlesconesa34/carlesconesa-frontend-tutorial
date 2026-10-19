@@ -87,6 +87,22 @@ export class LoanEditComponent implements OnInit {
       return;
     }
 
+    const start = new Date(startDate!);
+    const end = new Date(endDate!);
+
+    if (end < start) {
+      alert('La fecha de fin no puede ser anterior a la fecha de inicio');
+      return;
+    }
+
+    const diffTime = end.getTime() - start.getTime();
+    const diffDays = diffTime / (1000 * 60 * 60 * 24);
+
+    if (diffDays > 14) {
+      alert('El período máximo de préstamo es de 14 días');
+      return;
+    }
+
     const loan = {
       id,
       game: { id: gameId },
