@@ -138,8 +138,7 @@ export class LoanListPage implements OnInit {
     const dialogRef = this.dialog.open(DialogConfirmationComponent, {
       data: {
         title: 'Eliminar préstamo',
-        description:
-          'Atención si borra el préstamo se perderán sus datos.<br> ¿Desea eliminar el préstamo?',
+        description: 'Una vez borrado el préstamo se perderán sus datos. ¿Quieres continuar?',
       },
     });
 
