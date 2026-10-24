@@ -13,14 +13,14 @@
 
     <mat-form-field>
       <mat-label>Cliente</mat-label>
-      <mat-select [(ngModel)]="clientId" name="clientId">
-        @for (client of clients; track client.id) {
-          <mat-option [value]="client.id">
-            {{ client.name }}
+      <mat-select [(ngModel)]="customerId" name="customerId">
+        @for (customer of customers; track customer.id) {
+          <mat-option [value]="customer.id">
+            {{ customer.name }}
           </mat-option>
         }
       </mat-select>
-      <mat-error>¡Es necesario seleccionar un cliente!</mat-error>
+      <mat-error>¡Es necesario seleccionar un cliente</mat-error>
     </mat-form-field>
 
     <mat-form-field>

@@ -14,7 +14,7 @@ export class LoanService {
   getLoans(filterLoan: Loan, pageable: Pageable): Observable<PaginatedData<Loan>> {
     return this.http.post<PaginatedData<Loan>>(this.baseUrl, {
       gameId: filterLoan.gameId,
-      clientId: filterLoan.clientId,
+      customerId: filterLoan.customerId,
       searchDate: filterLoan.searchDate,
       pageable: pageable,
     });

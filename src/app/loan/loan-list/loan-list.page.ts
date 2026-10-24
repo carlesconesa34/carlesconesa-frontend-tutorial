@@ -13,10 +13,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { ClientService } from '../../client/client.service';
-import { Client } from '../../client/model/client';
 import { DialogConfirmationComponent } from '../../core/dialog-confirmation/dialog-confirmation.component';
 import { Pageable } from '../../core/model/page/pageable';
+import { CustomerService } from '../../customer/customer.service';
+import { Customer } from '../../customer/model/customer';
 import { GameService } from '../../game/game.service';
 import { Game } from '../../game/model/game';
 import { LoanEditComponent } from '../loan-edit/loan-edit.component';
@@ -48,21 +48,21 @@ export class LoanListPage implements OnInit {
 
   filterLoan: Loan = {};
   protected readonly games = signal<Game[]>([]);
-  protected readonly clients = signal<Client[]>([]);
+  protected readonly customers = signal<Customer[]>([]);
 
   dataSource = new MatTableDataSource<Loan>();
-  displayedColumns: string[] = ['id', 'gameName', 'clientName', 'startDate', 'endDate', 'action'];
+  displayedColumns: string[] = ['id', 'gameName', 'customerName', 'startDate', 'endDate', 'action'];
 
   constructor(
     private loanService: LoanService,
     private gameService: GameService,
-    private clientService: ClientService,
+    private customerService: CustomerService,
     public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
     this.loadGames();
-    this.loadClients();
+    this.loadcustomers();
     this.loadPage();
   }
 
@@ -108,9 +108,9 @@ export class LoanListPage implements OnInit {
     });
   }
 
-  loadClients(): void {
-    this.clientService.getClients().subscribe((data) => {
-      this.clients.set(data);
+  loadcustomers(): void {
+    this.customerService.getCustomers().subscribe((data) => {
+      this.customers.set(data);
     });
   }
 

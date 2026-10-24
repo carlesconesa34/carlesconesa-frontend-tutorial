@@ -4,29 +4,29 @@ import { MatButtonModule } from '@angular/material/button';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { ClientService } from '../client.service';
-import { Client } from '../model/client';
+import { CustomerService } from '../customer.service';
+import { Customer } from '../model/customer';
 
 @Component({
-  selector: 'app-client-edit',
+  selector: 'app-customer-edit',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
-  templateUrl: './client-edit.component.html',
-  styleUrl: './client-edit.component.scss',
+  templateUrl: './customer-edit.component.html',
+  styleUrl: './customer-edit.component.scss',
 })
-export class clientEditComponent implements OnInit {
-  protected readonly dialogRef = inject(MatDialogRef<clientEditComponent>);
-  protected readonly clientService = inject(ClientService);
-  protected readonly data = inject(MAT_DIALOG_DATA) as { client: Client };
+export class CustomerEditComponent implements OnInit {
+  protected readonly dialogRef = inject(MatDialogRef<CustomerEditComponent>);
+  protected readonly customerService = inject(CustomerService);
+  protected readonly data = inject(MAT_DIALOG_DATA) as { customer: Customer };
 
   protected readonly id = signal<number | null>(null);
   protected readonly name = signal<string | null>(null);
 
   ngOnInit(): void {
-    this.loadFormData(this.data.client ?? null);
+    this.loadFormData(this.data.customer ?? null);
   }
 
-  loadFormData(initialData: Client | null): void {
+  loadFormData(initialData: Customer | null): void {
     this.id.set(initialData?.id ?? null);
     this.name.set(initialData?.name ?? null);
   }
@@ -39,8 +39,8 @@ export class clientEditComponent implements OnInit {
       return;
     }
 
-    const client = { id, name } as Client;
-    this.clientService.saveClient(client).subscribe(() => {
+    const customer = { id, name } as Customer;
+    this.customerService.saveCustomer(customer).subscribe(() => {
       this.dialogRef.close(true);
     });
   }

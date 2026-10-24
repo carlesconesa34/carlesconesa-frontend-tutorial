@@ -1,4 +1,4 @@
-import { Client } from '../../client/model/client';
+import { Customer } from '../../customer/model/customer';
 import { Game } from '../../game/model/game';
 export interface Loan {
   id?: number;
@@ -7,7 +7,7 @@ export interface Loan {
   searchDate?: Date;
 
   game?: Game;
-  client?: Client;
+  customer?: Customer;
   gameId?: number;
-  clientId?: number;
+  customerId?: number;
 }

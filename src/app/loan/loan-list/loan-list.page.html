@@ -14,9 +14,9 @@
 
       <mat-form-field>
         <mat-label>Cliente</mat-label>
-        <mat-select disableRipple [(ngModel)]="filterLoan.clientId" name="client">
-          @for (client of clients(); track client.id) {
-            <mat-option [value]="client.id">{{ client.name }}</mat-option>
+        <mat-select disableRipple [(ngModel)]="filterLoan.customerId" name="customer">
+          @for (customer of customers(); track customer.id) {
+            <mat-option [value]="customer.id">{{ customer.name }}</mat-option>
           }
         </mat-select>
       </mat-form-field>
@@ -42,9 +42,9 @@
       <mat-cell *matCellDef="let element"> {{ element.id }} </mat-cell>
     </ng-container>
 
-    <ng-container matColumnDef="clientName">
-      <mat-header-cell *matHeaderCellDef> Cliente </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.client?.name }} </mat-cell>
+    <ng-container matColumnDef="customerName">
+      <mat-header-cell *matHeaderCellDef> cliente </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ element.customer?.name }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="gameName">
