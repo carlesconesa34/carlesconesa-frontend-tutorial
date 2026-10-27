@@ -62,7 +62,7 @@ export class LoanListPage implements OnInit {
 
   ngOnInit(): void {
     this.loadGames();
-    this.loadcustomers();
+    this.loadCustomers();
     this.loadPage();
   }
 
@@ -108,7 +108,7 @@ export class LoanListPage implements OnInit {
     });
   }
 
-  loadcustomers(): void {
+  loadCustomers(): void {
     this.customerService.getCustomers().subscribe((data) => {
       this.customers.set(data);
     });
@@ -121,7 +121,7 @@ export class LoanListPage implements OnInit {
 
     dialogRef.afterClosed().subscribe((saved) => {
       if (saved) {
-        this.ngOnInit();
+        this.loadPage();
       }
     });
   }
@@ -131,8 +131,10 @@ export class LoanListPage implements OnInit {
       data: { loan: loan },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      this.ngOnInit();
+    dialogRef.afterClosed().subscribe((saved) => {
+      if (saved) {
+        this.loadPage();
+      }
     });
   }
 
@@ -144,12 +146,12 @@ export class LoanListPage implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        this.loanService.deleteLoan(loan.id).subscribe((result) => {
-          this.ngOnInit();
-        });
-      }
+    dialogRef.afterClosed().subscribe({
+      next: () => this.loadPage(),
+      error: (err) => {
+        console.error('Error al guardar el cliente:', err);
+        alert('No se ha podido eliminar el préstamo.');
+      },
     });
   }
 }

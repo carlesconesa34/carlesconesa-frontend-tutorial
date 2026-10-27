@@ -33,13 +33,15 @@ export class CustomerEditComponent implements OnInit {
 
   onSave() {
     const id = this.id();
-    const name = this.name();
+    const name = this.name().trim();
 
     if (!name) {
+      alert('El nombre del cliente es obligatorio.')
       return;
     }
 
     const customer = { id, name } as Customer;
+    
     this.customerService.saveCustomer(customer).subscribe({
       next: () => this.dialogRef.close(true),
       error: (err) => {
