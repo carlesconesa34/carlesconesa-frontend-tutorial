@@ -40,8 +40,17 @@ export class CustomerEditComponent implements OnInit {
     }
 
     const customer = { id, name } as Customer;
-    this.customerService.saveCustomer(customer).subscribe(() => {
-      this.dialogRef.close(true);
+    this.customerService.saveCustomer(customer).subscribe({
+      next: () => this.dialogRef.close(true),
+      error: (err) => {
+        console.error('Error al guardar el cliente:', err);
+
+        const message =
+          typeof err.error === 'string'
+            ? err.error
+            : err.error?.message || err.error?.error || 'Comprueba los datos introducidos.';
+        alert(message);
+      },
     });
   }
 

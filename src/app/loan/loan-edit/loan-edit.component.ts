@@ -44,6 +44,12 @@ export class LoanEditComponent implements OnInit {
   protected readonly gameId = signal<number | null>(null);
   protected readonly customerName = signal<string | null>(null);
   protected readonly gameName = signal<string | null>(null);
+
+  protected readonly today = new Date(
+    new Date().getFullYear(),
+    new Date().getMonth(),
+    new Date().getDate(),
+  );
   protected readonly startDate = signal<Date | null>(null);
   protected readonly endDate = signal<Date | null>(null);
 
@@ -89,6 +95,11 @@ export class LoanEditComponent implements OnInit {
 
     const start = new Date(startDate!);
     const end = new Date(endDate!);
+
+    if (start < this.today) {
+      alert('La fecha de inicio debe ser igual o posterior al día actual.');
+      return;
+    }
 
     if (end < start) {
       alert('La fecha de fin no puede ser anterior a la fecha de inicio');

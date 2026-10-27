@@ -40,6 +40,7 @@
       <input
         matInput
         [matDatepicker]="startPicker"
+        [min]="today"
         [ngModel]="startDate()"
         (ngModelChange)="startDate.set($event)"
         name="startDate"
