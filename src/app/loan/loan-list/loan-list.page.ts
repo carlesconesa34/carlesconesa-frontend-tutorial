@@ -146,12 +146,18 @@ export class LoanListPage implements OnInit {
       },
     });
 
-    dialogRef.afterClosed().subscribe({
-      next: () => this.loadPage(),
-      error: (err) => {
-        console.error('Error al guardar el cliente:', err);
-        alert('No se ha podido eliminar el préstamo.');
-      },
+    dialogRef.afterClosed().subscribe((confirmed) => {
+      if (!confirmed || loan.id == null) {
+        return;
+      }
+
+      this.loanService.deleteLoan(loan.id).subscribe({
+        next: () => this.loadPage(),
+        error: (err) => {
+          console.error('Error al guardar el cliente:', err);
+          alert('No se ha podido eliminar el préstamo.');
+        },
+      });
     });
   }
 }
