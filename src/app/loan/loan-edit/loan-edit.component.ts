@@ -112,7 +112,15 @@ export class LoanEditComponent implements OnInit {
     } as unknown as Loan;
     this.loanService.saveLoan(loan).subscribe({
       next: () => this.dialogRef.close(true),
-      error: (err) => console.error('ERROR', err),
+      error: (err) => {
+        console.error('Error al guardar el préstamo:', err);
+
+        const message =
+          typeof err.error === 'string'
+            ? err.error
+            : err.error?.message || err.error?.error || 'Comprueba los datos introducidos.';
+        alert(message);
+      },
     });
   }
 
