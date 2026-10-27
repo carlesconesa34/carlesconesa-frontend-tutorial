@@ -15,13 +15,13 @@ export class CustomerService {
     return this.http.get<Customer[]>(this.baseUrl);
   }
 
-  saveCustomer(customer: Customer): Observable<Customer> {
+  saveCustomer(customer: Customer): Observable<void> {
     const { id } = customer;
     const url = id ? `${this.baseUrl}/${id}` : this.baseUrl;
-    return this.http.put<Customer>(url, customer);
+    return this.http.put<void>(url, customer);
   }
 
-  deleteCustomer(idClient: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${idClient}`);
+  deleteCustomer(customerId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${customerId}`);
   }
 }

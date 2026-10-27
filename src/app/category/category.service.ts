@@ -15,13 +15,13 @@ export class CategoryService {
     return this.http.get<Category[]>(this.baseUrl);
   }
 
-  saveCategory(category: Category): Observable<Category> {
+  saveCategory(category: Category): Observable<void> {
     const { id } = category;
     const url = id ? `${this.baseUrl}/${id}` : this.baseUrl;
-    return this.http.put<Category>(url, category);
+    return this.http.put<void>(url, category);
   }
 
-  deleteCategory(idCategory: number): Observable<any> {
-    return this.http.delete(`${this.baseUrl}/${idCategory}`);
+  deleteCategory(categoryId: number): Observable<any> {
+    return this.http.delete(`${this.baseUrl}/${categoryId}`);
   }
 }
