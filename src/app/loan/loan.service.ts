@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -14,10 +15,14 @@ export class LoanService {
   private baseUrl = 'http://localhost:8080/loan';
 
   getLoans(filterLoan: Loan, pageable: Pageable): Observable<PaginatedData<Loan>> {
+    const date = filterLoan.searchDate
+      ? formatDate(filterLoan.searchDate, 'yyyy-MM-dd', 'en-US')
+      : null;
+
     return this.http.post<PaginatedData<Loan>>(this.baseUrl, {
       gameId: filterLoan.gameId,
       customerId: filterLoan.customerId,
-      searchDate: filterLoan.searchDate,
+      date,
       pageable: pageable,
     });
   }
