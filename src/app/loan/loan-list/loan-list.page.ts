@@ -119,8 +119,10 @@ export class LoanListPage implements OnInit {
       data: {},
     });
 
-    dialogRef.afterClosed().subscribe((result) => {
-      this.ngOnInit();
+    dialogRef.afterClosed().subscribe((saved) => {
+      if (saved) {
+        this.ngOnInit();
+      }
     });
   }
 
