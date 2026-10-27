@@ -54,12 +54,12 @@
 
     <ng-container matColumnDef="startDate">
       <mat-header-cell *matHeaderCellDef> Inicio </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.startDate | date: 'M/d/yyy' }} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{ element.startDate | date: 'yyyy/MM/dd' }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="endDate">
       <mat-header-cell *matHeaderCellDef> Expira </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{ element.endDate | date: 'M/d/yyy' }} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{ element.endDate | date: 'yyyy/MM/dd' }} </mat-cell>
     </ng-container>
 
     <ng-container matColumnDef="action">
