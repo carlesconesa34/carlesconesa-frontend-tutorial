@@ -69,7 +69,6 @@ export class LoanEditComponent implements OnInit {
     this.loadFormData(this.data.loan ?? null);
 
     this.customerService.getCustomers().subscribe((data) => {
-      console.log('customerS', data);
       this.customers = data;
     });
 
