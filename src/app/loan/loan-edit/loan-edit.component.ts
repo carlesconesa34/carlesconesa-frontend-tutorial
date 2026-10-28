@@ -49,6 +49,7 @@ export class LoanEditComponent implements OnInit {
     new Date().getMonth(),
     new Date().getDate(),
   );
+  
   protected readonly startDate = signal<Date | null>(null);
   protected readonly endDate = signal<Date | null>(null);
 
@@ -119,6 +120,7 @@ export class LoanEditComponent implements OnInit {
       startDate: formatDate(startDate!, 'yyyy-MM-dd', 'en-US'),
       endDate: formatDate(endDate!, 'yyyy-MM-dd', 'en-US'),
     } as unknown as Loan;
+
     this.loanService.saveLoan(loan).subscribe({
       next: () => this.dialogRef.close(true),
       error: (err) => {

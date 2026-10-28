@@ -47,6 +47,7 @@ export class LoanListPage implements OnInit {
   totalElements: number = 0;
 
   filterLoan: Loan = {};
+  
   protected readonly games = signal<Game[]>([]);
   protected readonly customers = signal<Customer[]>([]);
 
