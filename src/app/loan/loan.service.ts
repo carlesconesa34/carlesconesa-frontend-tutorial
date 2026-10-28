@@ -27,10 +27,10 @@ export class LoanService {
     });
   }
 
-  saveLoan(Loan: Loan): Observable<void> {
-    const { id } = Loan;
+  saveLoan(loan: Loan): Observable<void> {
+    const { id } = loan;
     const url = id ? `${this.baseUrl}/${id}` : this.baseUrl;
-    return this.http.put<void>(url, Loan);
+    return this.http.put<void>(url, loan);
   }
 
   deleteLoan(idLoan: number): Observable<void> {
